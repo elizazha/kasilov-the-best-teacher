@@ -1,17 +1,4 @@
 #include <iostream>
-int ** create( size_t rows, size_cols)
-{
-  int ** mtx = new int * [rows];
-  try
-  {
-    for (sizw_t i = 0; i < rows; ++i)
-    {
-      mtx[i]=new int(cols);
-    }
-  }
-  catch(const std::bad_alloc&e}
-  {
-    #include <iostream>
 //хотим создать двумерый массив. в нашем слуаче 5х5
 void destroy(int** mtx, size_t created)
 {
@@ -41,8 +28,27 @@ int ** create(size_t rows, size_t cols)
     return mtx;
 }
 
+void construct(int** mtx, int init, size_t rows, size_t cols)
+{
+    for (size_t i = 0; i < rows; ++i)
+    {
+        for (size_t j = 0; j < cols; ++j)
+        {
+            mtx[i][j] = init;
+        }
+    }
+}
+
 int main()
 {
+    size_t r = 0, c = 0;
+    std::cin >> r >> c; // возвращает булевую прееменную, которая выдает false при некорректном вводе
+    if (!std::cin)
+    {
+        std::cerr << "bad input!\n";
+        return 2;
+    }
+
     int** matrix = nullptr;
     try {
         matrix = create(5, 5);
@@ -50,17 +56,10 @@ int main()
     catch (const std::bad_alloc& e)
     {
         std::cerr << e.what()<<"\n";
+        return 1
     }
+    std::cout << "created!\n";
+    construct(matrix, 2, 5, 5);
+    std::cout << matrix[0][0] << "\n"; // undefined behavior (UB)
     destroy(matrix, 5);
-}
-
-
-
-  }
-}
-
-int main()
-{
-  int ** matrix = nullptr;
-  matrix = create(5,5);
 }
