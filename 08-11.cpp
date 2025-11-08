@@ -1,35 +1,49 @@
 #include <iostream>
 
-int ** ct(size_t n, size_t m);
-
-int* copy(const int * v, size_t k, int* w) //пернеосит из матрицы v в матицу w k символов строки. по сути просто объединяет строки
+size_t detsize(size_t n1, size_t m1, size_t n2, size_t m2, size_t i) // дает длину строки
 {
-  for (size_t i = 0; i < k; ++i)
+  size_t minn = n1>n2?n2:n1;
+  if (i < minn)
   {
-    w[i]=v[i]; // ?? что делает w[i]=v[i], если w и v - указатели?
+    return m1+m2;
   }
-  return w+k;
+  // if (n1>n2)
+  // {
+  //   return  m1;
+  // }
+  // else
+  // {
+  //   return m2;
+  // }
+  return n1<n2?m2:m1;
 }
 
-int ** concad_rows(const int* const * a, size_t n1, size_t m1, const int * const * b, size_t n2, size_t m2)
+
+void rm(int ** a, size_t k)//как понять, когда стаит *, а когда **?
 {
-  size_t n = n1>n2?n2:n1;
-  int ** c = ct(n, m1+m2);
-  for (size_t i = 0; i<n; ++i)
+  for (size_t i = 0; i<k; ++i)
   {
-    const int * rowa = a[i];//const потому что на вход const, иначе ошибка
-    const int * rowb = b[i];
-    int * rowc = c[i];
-    rowc = copy(rowa, m1, rowc);
-    copy(rowb, m2, rowc);
-
-
-
+    delete[]a[i];
   }
+  delete[]a;
+}
+
+int ** ct(size_t n1, size_t m1, size_t n2, size_t m2)
+{
+  size_t n = n1>n2?n1:n2;    //если n1>n2, возвр n1, иначе n2...?
+  int ** c = new int* [n];   //создаем массив массивов, почему начала **, потом *? 
+  size_t i = 0;
+  try
+  {
+    for (i; i<n; ++i)
+    {
+      size_t m = detsize(n1, n2, m1, m2, i);   //?
+      c[i] = new int[m]; // почему без ** и *?
+    }
+  }catch(...){
+    rm(c, i);
+  }throw;
   return c;
 }
 
-int main()
-{
 
-}
