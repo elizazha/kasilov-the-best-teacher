@@ -1,49 +1,25 @@
 #include <iostream>
-
-size_t detsize(size_t n1, size_t m1, size_t n2, size_t m2, size_t i) // дает длину строки
+int det (const int * a, size_t n)
 {
-  size_t minn = n1>n2?n2:n1;
-  if (i < minn)
+  if (n==0)
   {
-    return m1+m2;
+    return 0;
   }
-  // if (n1>n2)
-  // {
-  //   return  m1;
-  // }
-  // else
-  // {
-  //   return m2;
-  // }
-  return n1<n2?m2:m1;
-}
-
-
-void rm(int ** a, size_t k)//как понять, когда стаит *, а когда **?
-{
-  for (size_t i = 0; i<k; ++i)
+  else if( n == 1)
   {
-    delete[]a[i];
+    return a[0];//то же самое как return *a;
   }
-  delete[]a;
-}
-
-int ** ct(size_t n1, size_t m1, size_t n2, size_t m2)
-{
-  size_t n = n1>n2?n1:n2;    //если n1>n2, возвр n1, иначе n2...?
-  int ** c = new int* [n];   //создаем массив массивов, почему начала **, потом *? 
-  size_t i = 0;
-  try
+  else if (n==2)
   {
-    for (i; i<n; ++i)
-    {
-      size_t m = detsize(n1, n2, m1, m2, i);   //?
-      c[i] = new int[m]; // почему без ** и *?
-    }
-  }catch(...){
-    rm(c, i);
-  }throw;
-  return c;
-}
-
-
+    return a[0]*a[3]-a[1]*a[2];
+  }
+  // для каждогог эл-та первой(нулевой) строки
+  // элемент =  опорный элемент 
+  // нужно  сделать матрицу для минора. аккуратно убрать столбец и скпоировать эл-ты; new!!
+  // заполнить минор
+  // учитывваем, что для минора меньше размерность
+  // считаем определтель минорa; det -> new!
+  //накапливаем определитель
+  //                                проверка - для матрицы 4х4 от 1 до 16 det = 0
+  //
+  }
