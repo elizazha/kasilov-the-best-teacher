@@ -1,22 +1,24 @@
 #include <iostream>
+// задача 2 умножение матриц, реализованная через код 1
+void mul(int *c, const int * a, size_t n1, size_t m1,  const int * b, size_t m2){
+  for (size_t i = 0; i < n1; i++){ // перебор по стобцам, i - столебц
+    for (size_t j = 0; j < m2; j++){ // перебор по строкам, j - строка
+      // идем по j-тому столбцу и одновремнно в другой матрицы идем по i-той строке
+      // с[i][j]=?? надо пиисвоить, что мы там посчитали
+      int res = 0;
+      const int * rowa = a + i*m1; 
+      const int * colb = b+j;
+      for (size_t l = 0; l < m1; ++l){
+        int rowa_l = rowa[l];
+        int colb_l = colb[l*m2];
+        res += rowa_l*colb_l;
 
-// int * sum(size_t n, size_t m, const int * a, const int * b){  // задача 1. Код 2
-//   int * r = new int[m*n];
-//   sum(n, m, r, a, b); // в r(result) скалдываем a и b
-//   return r;
-// }
-
-// void * sum(size_t n, size_t m, int * c, const int * a, const int * b){
-//   for (size_t i =0; i < m*n; i++){
-//       c[i]=a[i]+b[i];
-//     }
-// } // задача 1. Код 1
-
-// void add(size_t n, size_t m){ // - задача 1. Код 3
-//   sum(n, m, a, a, d) // a - куда запис рез( по сути с, но *а и *с указ на одно и то же место); а, b - то, что надо сложить
-// }
-// через код 2 нельзя реальзоват две остальные, так как этот метод не выделяет память внутри функции. нам самим
-// придется выделить память. то есть будут исключения, что может => проблемы
+      }
+      int * rowc = c + i*m2;
+      rowc[j]=res;
+    }
+  }
+}
 int main(){
 
 }
