@@ -75,3 +75,21 @@ bool is_better( const Subj & sub, int y1, int y2)
     size_t q_y2 = max_visits(sub, y2);
     return n_y1 * q_y2 > n_y2 * q_y1;
 }
+
+
+const Stud ** dobsov (const Subj & sub, size_t & dobs, size_t vis)
+{
+    
+    size_t count = 0;
+    for (size_t i = 0; i < sub.people; i++)
+    {
+        size_t sub_i = sub.visited[i];
+        if (sub_i < vis)
+        {
+            count++;
+        }
+    }
+    const Subj ** res = new const Subj *[count];
+    dobs = count;
+
+}
