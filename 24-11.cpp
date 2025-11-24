@@ -66,3 +66,12 @@ size_t visits(const Subj & sub, int y)
     }
     return r;
 }
+
+bool is_better( const Subj & sub, int y1, int y2)
+{
+    size_t n_y1 = visits(sub, y1);
+    size_t q_y1 = max_visits(sub, y1);
+    size_t n_y2 = visits(sub, y2);
+    size_t q_y2 = max_visits(sub, y2);
+    return n_y1 * q_y2 > n_y2 * q_y1;
+}
