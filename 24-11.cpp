@@ -6,6 +6,8 @@ struct Stud{
     int dep;//кафедра
 };
 
+
+
 size_t countyear(const Stud * const * studs, size_t k, int y)
 {
     size_t r = 0;
@@ -37,4 +39,30 @@ const Stud ** stud_dep (const  Stud * const * studs, size_t k, int dep, size_t &
             r[j++] = stud_i;
         }
     }
+}
+
+struct Subj {
+    const char * name;
+    size_t people, classes;
+    const Stud * const * studs;
+    const size_t * visited;
+};
+
+size_t max_visits(const Subj & sub, int y)
+{
+    size_t cy = countyear(sub.studs, sub.people, y);
+    return cy * sub.classes;
+}
+size_t visits(const Subj & sub, int y)
+{
+    size_t r = 0;
+    for (size_t i =0; i < sub.people; i++)
+    {
+        const Stud* stud_i = sub.studs[i];
+        if (stud_i -> year == y)
+        {
+            r += sub.visited[i];
+        }
+    }
+    return r;
 }
