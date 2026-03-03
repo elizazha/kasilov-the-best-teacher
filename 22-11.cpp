@@ -1,4 +1,4 @@
-#include <iostream>
+/*#include <iostream>
 #include <memory>
 struct p_t{
     int x, y;
@@ -71,7 +71,8 @@ Points Points::append(p_t a) const{
     return Points(std::move(delta));
 } 
 Points Points::append(const Points & w) const{}
-int main()
+int main2()
 {
 
 }
+*/

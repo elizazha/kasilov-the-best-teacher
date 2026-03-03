@@ -84,12 +84,17 @@ const Stud ** dobsov (const Subj & sub, size_t & dobs, size_t vis)
     for (size_t i = 0; i < sub.people; i++)
     {
         size_t sub_i = sub.visited[i];
-        if (sub_i < vis)
+        if (sub_i -> visited < vis)
         {
             count++;
         }
     }
-    const Subj ** res = new const Subj *[count];
+    const Stud ** r = new const Subj * [count];
     dobs = count;
+    for (size_t i = 0; i < sub.people; i++)
+    {
+        const Stud * stud_i = Subj -> visited[i];
+        r[i++] = stud_i
+    }
 
 }
